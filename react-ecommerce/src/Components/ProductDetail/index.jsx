@@ -20,7 +20,7 @@ const ProductDetail = () => {
             </div>
             <figure className='px-6'>
                 <img
-                    src={context.productToShow.images[0]}
+                    src={context.productToShow.images}
                     alt={context.productToShow.title}
                     className='w-full h-full rounded-lg'/>
             </figure>
