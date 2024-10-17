@@ -6,8 +6,10 @@ import MyOrder from '../MyOrder'
 import MyOrders from '../MyOrders'
 import NotFound from '../NotFound'
 import SignIn from '../SignIn'
+import SignUp from '../SignUp'
 import Navbar from '../../Components/Navbar'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
+import ProtectedRoute from '../../Components/ProtectedRoute'
 import './App.css'
 
 const AppRoutes = () => {
@@ -18,15 +20,50 @@ const AppRoutes = () => {
     { path: '/furnitures', element: <Home /> },
     { path: '/toys', element: <Home /> },
     { path: '/others', element: <Home /> },
-    { path: '/my-account', element: <MyAccount /> },
-    { path: '/my-order', element: <MyOrder /> },
-    { path: '/my-orders', element: <MyOrders /> },
-    { path: '/my-orders/last', element: <MyOrder /> },
-    { path: '/my-orders/:id', element: <MyOrder /> },
-    { path: '/*', element: <NotFound /> },
+    { 
+      path: '/my-account', 
+      element: (
+        <ProtectedRoute>
+          <MyAccount />
+        </ProtectedRoute>
+      ) 
+    },
+    { 
+      path: '/my-order', 
+      element: (
+        <ProtectedRoute>
+          <MyOrder />
+        </ProtectedRoute>
+      ) 
+    },
+    { 
+      path: '/my-orders', 
+      element: (
+        <ProtectedRoute>
+          <MyOrders />
+        </ProtectedRoute>
+      ) 
+    },
+    { 
+      path: '/my-orders/last', 
+      element: (
+        <ProtectedRoute>
+          <MyOrder />
+        </ProtectedRoute>
+      ) 
+    },
+    { 
+      path: '/my-orders/:id', 
+      element: (
+        <ProtectedRoute>
+          <MyOrder />
+        </ProtectedRoute>
+      ) 
+    },
     { path: '/sign-in', element: <SignIn /> },
+    { path: '/sign-up', element: <SignUp /> },
+    { path: '/*', element: <NotFound /> },
   ])
-
   return routes
 }
 

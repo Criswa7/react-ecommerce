@@ -1,14 +1,21 @@
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 
 const Navbar = () => {
     const context = useContext(ShoppingCartContext)
+    const navigate = useNavigate()
     const activeStyle = 'underline underline-offset-4'
 
+    const handleSignOut = (e) => {
+        e.preventDefault()
+        context.handleSignOut()
+        navigate('/sign-in')
+    }
+
     return (
-        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light'>
+        <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white'>
             <ul className='flex items-center gap-3'>
                 <li className='font-semibold text-lg'>
                     <NavLink to='/'>
@@ -78,7 +85,7 @@ const Navbar = () => {
             </ul>
             <ul className='flex items-center gap-3'>
                 <li className='text-black/60'>
-                    email@mail.com
+                    {context.isUserAuthenticated ? (context.account?.email || 'email@mail.com') : 'Guest'}
                 </li>
                 <li>
                     <NavLink
@@ -99,17 +106,29 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to='/sign-in'
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }>
-                        Sign In
-                    </NavLink>
+                    {context.isUserAuthenticated ? (
+                        <button
+                            onClick={handleSignOut}
+                            className={`${activeStyle}`}>
+                            Sign Out
+                        </button>
+                    ) : (
+                        <NavLink
+                            to='/sign-in'
+                            className={({ isActive }) =>
+                                isActive ? activeStyle : undefined
+                            }>
+                            Sign In
+                        </NavLink>
+                    )}
                 </li>
-                <li className='flex items-center'>
-                    <ShoppingCartIcon className='h-6 w-6 text-color-black'></ShoppingCartIcon>
-                    <div>{context.cartProducts.length}</div>
+                <li 
+                    className='flex items-center cursor-pointer'
+                    onClick={() => context.openCheckoutSideMenu()}>
+                    <ShoppingCartIcon className='h-6 w-6 text-black hover:text-gray-700'></ShoppingCartIcon>
+                    <div className='flex justify-center items-center bg-black text-white rounded-full w-5 h-5 text-xs'>
+                        {context.cartProducts.length}
+                    </div>
                 </li>
             </ul>
         </nav>
