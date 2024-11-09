@@ -50,29 +50,31 @@ npm run preview    # Preview production build
 react-ecommerce/
 ├── node_modules/
 ├── public/
+│ └── shopping-bag.svg
 ├── src/
-│   ├── Components/
-│   │   ├── Card/
-│   │   ├── CheckoutSideMenu/
-│   │   ├── Layout/
-│   │   ├── Navbar/
-│   │   ├── OrderCard/
-│   │   ├── OrdersCard/
-│   │   ├── ProductDetail/
-│   │   └── Protect/
-│   ├── Context/
-│   ├── Pages/
-│   │   ├── App/
-│   │   ├── Home/
-│   │   ├── MyAccount/
-│   │   ├── MyOrder/
-│   │   ├── MyOrders/
-│   │   ├── NotFound/
-│   │   ├── SignIn/
-│   │   └── SignUp/
-│   ├── utils/
-│   ├── index.css
-│   └── main.jsx
+│ ├── Components/
+│ │ ├── Card/
+│ │ ├── CartSummary
+│ │ ├── CheckoutSideMenu/
+│ │ ├── Layout/
+│ │ ├── Navbar/
+│ │ ├── OrderCard/
+│ │ ├── OrdersCard/
+│ │ ├── ProductDetail/
+│ │ └── ProtectedRoute
+│ ├── Context/
+│ ├── Pages/
+│ │ ├── App/
+│ │ ├── Home/
+│ │ ├── MyAccount/
+│ │ ├── MyOrder/
+│ │ ├── MyOrders/
+│ │ ├── NotFound/
+│ │ ├── SignIn/
+│ │ └── SignUp/
+│ ├── utils/
+│ ├── index.css
+│ └── main.jsx
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
@@ -90,16 +92,21 @@ The project uses environment variables for sensitive configurations. Create a `.
 ```env
 VITE_API_URL=your_api_url
 ```
+The project uses a custom shopping bag icon from Heroicons for the favicon.
 
 ## 🚧 Project Status
-The project is currently in active development.
+The project is currently under finalized development. Still active to receive pull request :D
 
 ## 🎯 Features Deep Dive
-- **Product Catalog**: Browse through a variety of products fetched from an external API
+- **Responsive Design**: Optimized for all screen sizes with:
+  - Mobile-first approach
+  - Hamburger menu for mobile navigation
+  - Adaptive layouts and components
+  - Touch-friendly interactions
 - **Shopping Cart**: Add/remove items, adjust quantities, and view total price
 - **Authentication**: Secure user authentication system
 - **Order Management**: Track current and past orders
-- **Responsive Design**: Seamless experience across all device sizes
+- **Product Search**: Real-time search functionality
 
 ## 🔍 Technical Details
 - State Management using React Context
@@ -107,12 +114,14 @@ The project is currently in active development.
 - API integration for product data
 - Modern ES6+ JavaScript
 - Tailwind CSS for styling
+- Responsive design patterns
 
 ## ⚡ Performance Optimizations
 - Lazy loading of components
 - Optimized images and assets
 - Efficient state management
 - Fast development server with Vite
+- Mobile-optimized interactions
 
 ## 🤝 Contributing
 Contributions are welcome. Please follow these steps:
@@ -128,11 +137,3 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 ## 👤 Contact
 Cristian Florez
 - GitHub: [@Criswa7](https://github.com/Criswa7)
-
-## 💪 Future Improvements
-- Payment gateway integration
-- Enhanced user profiles
-- Product reviews and ratings
-- Advanced search functionality
-- Performance optimizations
-- Mobile
