@@ -25,8 +25,8 @@ const Navbar = () => {
     return (
         <nav className='fixed z-10 top-0 w-full bg-white shadow-sm'>
             {/* Main navbar container */}
-            <div className={`flex justify-between items-center py-5 px-4 md:px-8 ${isMenuOpen ? 'md:flex' : ''}`}>
-                {/* Left section: Logo and mobile menu button */}
+            <div className={`flex items-center py-5 px-4 md:px-8 ${isMenuOpen ? 'md:flex' : ''}`}>
+                {/* Left section: Logo, mobile menu button and categories */}
                 <div className='flex items-center gap-4'>
                     <button 
                         className='md:hidden'
@@ -40,14 +40,73 @@ const Navbar = () => {
                     <NavLink to='/' className='font-bold text-2xl'>
                         Shopi
                     </NavLink>
+                    {/* Desktop navigation categories */}
+                    <ul className='hidden md:flex items-center gap-3 ml-4'>
+                        <li>
+                            <NavLink
+                                to='/'
+                                onClick={() => context.setSearchByCategory()}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                All
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/clothes'
+                                onClick={() => context.setSearchByCategory('clothes')}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                Clothes
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/electronics'
+                                onClick={() => context.setSearchByCategory('electronics')}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                Electronics
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/furnitures'
+                                onClick={() => context.setSearchByCategory('furnitures')}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                Furnitures
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/toys'
+                                onClick={() => context.setSearchByCategory('toys')}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                Toys
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/others'
+                                onClick={() => context.setSearchByCategory('others')}
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                Others
+                            </NavLink>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Desktop navigation categories */}
-                <ul className='hidden md:flex items-center gap-3'>
-                </ul>
-
                 {/* Right section: User info, cart and auth buttons */}
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-3 ml-auto'>
                     {/* Desktop menu items */}
                     {context.isUserAuthenticated ? (
                         <>
