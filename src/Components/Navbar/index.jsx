@@ -44,7 +44,6 @@ const Navbar = () => {
 
                 {/* Desktop navigation categories */}
                 <ul className='hidden md:flex items-center gap-3'>
-                    {/* ... Desktop menu items remain unchanged ... */}
                 </ul>
 
                 {/* Right section: User info, cart and auth buttons */}
@@ -82,7 +81,7 @@ const Navbar = () => {
                             </li>
                         </>
                     ) : (
-                        <li>
+                        <li className='list-none'>
                             <NavLink
                                 to='/sign-in'
                                 className={({ isActive }) =>
