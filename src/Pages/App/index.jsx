@@ -10,6 +10,7 @@ import SignUp from '../SignUp'
 import Navbar from '../../Components/Navbar'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import ProtectedRoute from '../../Components/ProtectedRoute'
+import CartSummary from '../../Components/CartSummary'
 import './App.css'
 
 const AppRoutes = () => {
@@ -20,6 +21,7 @@ const AppRoutes = () => {
     { path: '/furnitures', element: <Home /> },
     { path: '/toys', element: <Home /> },
     { path: '/others', element: <Home /> },
+    { path: '/cart-summary', element: <CartSummary /> },
     { 
       path: '/my-account', 
       element: (

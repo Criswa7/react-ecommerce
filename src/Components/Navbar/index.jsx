@@ -84,44 +84,50 @@ const Navbar = () => {
                 </li>
             </ul>
             <ul className='flex items-center gap-3'>
-                <li className='text-black/60'>
-                    {context.isUserAuthenticated ? (context.account?.email || 'email@mail.com') : 'Guest'}
-                </li>
-                <li>
-                    <NavLink
-                        to='/my-orders'
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }>
-                        My Orders
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to='/my-account'
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }>
-                        My Account
-                    </NavLink>
-                </li>
-                <li>
-                    {context.isUserAuthenticated ? (
+                {context.isUserAuthenticated ? (
+                    <>
+                        <li className='text-black/60'>
+                            {context.account?.email || 'email@mail.com'}
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/my-orders'
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                My Orders
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to='/my-account'
+                                className={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                }>
+                                My Account
+                            </NavLink>
+                        </li>
+                        <li>
                         <button
-                            onClick={handleSignOut}
-                            className={`${activeStyle}`}>
-                            Sign Out
-                        </button>
-                    ) : (
+                                onClick={handleSignOut}
+                                className='hover:text-gray-500'>
+                                Sign Out
+                            </button>
+                        </li>
+                    </>
+                ) : (
+                    <li>
                         <NavLink
                             to='/sign-in'
                             className={({ isActive }) =>
-                                isActive ? activeStyle : undefined
+                                `bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 ${
+                                    isActive ? 'bg-gray-800' : ''
+                                }`
                             }>
                             Sign In
                         </NavLink>
-                    )}
-                </li>
+                    </li>
+                )}
                 <li 
                     className='flex items-center cursor-pointer'
                     onClick={() => context.openCheckoutSideMenu()}>

@@ -15,27 +15,9 @@ const CheckoutSideMenu = () => {
     context.setCartProducts(filteredProducts)
   }
 
-  const handleCheckout = () => {
-    if (!context.isUserAuthenticated) {
-      // Guardar el carrito actual y redirigir a login
-      localStorage.setItem('pendingCart', JSON.stringify(context.cartProducts))
-      context.closeCheckoutSideMenu()
-      navigate('/sign-in')
-      return
-    }
-
-    const orderToAdd = {
-      date: new Date().toLocaleDateString(),
-      products: context.cartProducts,
-      totalProducts: context.cartProducts.length,
-      totalPrice: totalPrice(context.cartProducts)
-    }
-    
-    context.setOrder([...context.order, orderToAdd])
-    context.setCartProducts([])
-    context.setSearchByTitle(null)
+  const handleViewCart = () => {
     context.closeCheckoutSideMenu()
-    navigate('/my-orders/last')
+    navigate('/cart-summary')
   }
 
   return (
@@ -60,18 +42,16 @@ const CheckoutSideMenu = () => {
           </div>
         </div>
         <div className='px-6 overflow-y-scroll flex-1'>
-          {
-            context.cartProducts.map(product => (
-              <OrderCard
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                imageUrl={product.images}
-                price={product.price}
-                handleDelete={handleDelete}
-              />
-            ))
-          }
+          {context.cartProducts.map(product => (
+            <OrderCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              imageUrl={product.images}
+              price={product.price}
+              handleDelete={handleDelete}
+            />
+          ))}
         </div>
         <div className='px-6 mb-6'>
           <p className='flex justify-between items-center mb-2'>
@@ -80,8 +60,8 @@ const CheckoutSideMenu = () => {
           </p>
           <button
             className='bg-black py-3 text-white w-full rounded-lg'
-            onClick={handleCheckout}>
-            Checkout
+            onClick={handleViewCart}>
+            View Cart
           </button>
         </div>
       </aside>
